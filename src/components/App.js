@@ -22,6 +22,7 @@ function App() {
   const [counselor, setCounselor] = useState('');
   const [speciality, setSpeciality] = useState('');
   const [selected, setSelected] = useState('all');
+  const [search, setSearch] = useState('');
 
   // Handlers
   const handleChangeName = (ev) => {
@@ -58,9 +59,21 @@ function App() {
     setSelected(ev.currentTarget.value);
   };
 
+  const handleInputSearch = (ev) => {
+    setSearch(ev.currentTarget.value);
+  };
+
   // Render HTML
 
   const renderStudents = data
+    .filter((student) => {
+      if (search !== '') {
+        return student.name.toLowerCase().includes(search.toLowerCase());
+      } else {
+        return student;
+      }
+    })
+
     .filter((student) => {
       if (selected === 'all') {
         return student;
@@ -86,6 +99,12 @@ function App() {
     <div>
       <header>
         <h1>Adalabers</h1>
+        <input
+          type="text"
+          placeholder="Busca por alumna..."
+          value={search}
+          onChange={handleInputSearch}
+        />
         <select
           name="filter-students"
           id="filter-students"
@@ -142,7 +161,7 @@ function App() {
               />
             </label>
             <button onClick={handleAddAdalaber}>
-              Añadir una nuevaAdalaber
+              Añadir una nueva Adalaber
             </button>
           </form>
         </section>
