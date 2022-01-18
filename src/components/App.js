@@ -21,6 +21,7 @@ function App() {
   const [studentName, setStudentName] = useState('');
   const [counselor, setCounselor] = useState('');
   const [speciality, setSpeciality] = useState('');
+  const [selected, setSelected] = useState('all');
 
   // Handlers
   const handleChangeName = (ev) => {
@@ -53,22 +54,49 @@ function App() {
     setSpeciality('');
   };
 
+  const handleChangeSelect = (ev) => {
+    setSelected(ev.currentTarget.value);
+  };
+
   // Render HTML
 
-  const renderStudents = data.map((student) => {
-    return (
-      <tr key={student.id}>
-        <td className="table__row--column">{student.name}</td>
-        <td className="table__row--column">{student.counselor}</td>
-        <td className="table__row--column">{student.speciality}</td>
-      </tr>
-    );
-  });
+  const renderStudents = data
+    .filter((student) => {
+      if (selected === 'all') {
+        return student;
+      } else if (selected === 'yanelis') {
+        return student.counselor === 'Yanelis';
+      } else if (selected === 'dayana') {
+        return student.counselor === 'Dayana';
+      } else if (selected === 'ivan') {
+        return student.counselor === 'Iván';
+      }
+    })
+    .map((student) => {
+      return (
+        <tr key={student.id}>
+          <td className="table__row--column">{student.name}</td>
+          <td className="table__row--column">{student.counselor}</td>
+          <td className="table__row--column">{student.speciality}</td>
+        </tr>
+      );
+    });
 
   return (
     <div>
       <header>
         <h1>Adalabers</h1>
+        <select
+          name="filter-students"
+          id="filter-students"
+          value={selected}
+          onChange={handleChangeSelect}
+        >
+          <option value="all">Cualquiera</option>
+          <option value="yanelis">Yanelis</option>
+          <option value="dayana">Dayana</option>
+          <option value="ivan">Iván</option>
+        </select>
       </header>
       <main>
         <section>
