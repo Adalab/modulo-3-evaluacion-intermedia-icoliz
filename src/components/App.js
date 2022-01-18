@@ -1,12 +1,23 @@
-import { useState } from 'react';
-import dataAPI from '../data/data.json';
+import { useEffect, useState } from 'react';
 // import callToApi from '../services/api';
 // import ls from '../services/localStorage';
 import '../styles/App.scss';
 
 function App() {
+  // Set data and call to API
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch(
+      'https://beta.adalab.es/pw-recursos/apis/adalabers-v1/promo-patata.json'
+    )
+      .then((response) => response.json())
+      .then((dataAPI) => {
+        setData(dataAPI.results);
+      });
+  }, []);
+
   // State variables
-  const [data, setData] = useState(dataAPI.results);
   const [studentName, setStudentName] = useState('');
   const [counselor, setCounselor] = useState('');
   const [speciality, setSpeciality] = useState('');
@@ -41,6 +52,8 @@ function App() {
     setCounselor('');
     setSpeciality('');
   };
+
+  // Render HTML
 
   const renderStudents = data.map((student) => {
     return (
