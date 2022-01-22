@@ -143,7 +143,7 @@ function App() {
                 className="form__input"
                 type="text"
                 id="name"
-                placeholder="Escribe aquí..."
+                placeholder="Ej: Mari Carmen"
                 value={studentName}
                 onChange={handleChangeName}
               />
@@ -156,7 +156,7 @@ function App() {
                 className="form__input"
                 type="text"
                 id="counselor"
-                placeholder="Nombre de tu tutor/a..."
+                placeholder="Yanelis, Dayana o Iván"
                 value={counselor}
                 onChange={handleChangeCounselor}
               />
@@ -169,7 +169,7 @@ function App() {
                 className="form__input"
                 type="text"
                 id="speciality"
-                placeholder="Tu especialidad..."
+                placeholder="Javascript, React, Node JS..."
                 value={speciality}
                 onChange={handleChangeSpeciality}
               />
