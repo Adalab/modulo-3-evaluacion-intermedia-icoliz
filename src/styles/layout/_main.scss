@@ -30,6 +30,8 @@
   .form {
     background-color: $darkGrey;
     padding: 15px 15px;
+    display: flex;
+    flex-direction: column;
     @include tablet {
       padding: 15px 45px;
     }
@@ -55,6 +57,7 @@
       margin: 10px 0;
     }
     &__button {
+      align-self: center;
       display: block;
       font-size: 18px;
       background-color: $adalabGreen;
