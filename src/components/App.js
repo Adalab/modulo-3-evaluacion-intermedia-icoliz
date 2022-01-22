@@ -84,35 +84,34 @@ function App() {
       }
     })
     .map((student) => {
-      const rrss = student.social_networks.map((rrss) => ({
-        name: rrss.name,
-        url: rrss.url,
-      }));
-      const socialName = rrss.map((eachSocial) => eachSocial.name);
-      const socialUrl = rrss.map((eachSocial) => eachSocial.url);
-
-      const socialIcon = socialName.map((name, index) => {
-        if (name === 'Twitter') {
-          return <i key={index} className="fab fa-twitter"></i>;
-        } else if (name === 'GitHub') {
-          return <i key={index} className="fab fa-github"></i>;
-        } else if (name === 'LinkedIn') {
-          return <i key={index} className="fab fa-linkedin-in"></i>;
-        } else {
-          return null;
-        }
+      const networks = student.social_networks.map((eachNetwork, index) => {
+        // Show icons
+        const socialIcon = () => {
+          if (eachNetwork.name === 'Twitter') {
+            return <i className="fab fa-twitter"></i>;
+          } else if (eachNetwork.name === 'GitHub') {
+            return <i className="fab fa-github"></i>;
+          } else if (eachNetwork.name === 'LinkedIn') {
+            return <i className="fab fa-linkedin-in"></i>;
+          } else {
+            return null;
+          }
+        };
+        return (
+          <a key={index} href={eachNetwork.url} target="_blank">
+            {socialIcon()}
+          </a>
+        );
       });
+
+      console.log(student);
 
       return (
         <tr key={student.id} className="tbody__row">
           <td className="tbody__row--column">{student.name}</td>
           <td className="tbody__row--column">{student.counselor}</td>
           <td className="tbody__row--column">{student.speciality}</td>
-          <td className="tbody__row--column">
-            <a href={`${socialUrl}`} target="_blank">
-              {socialIcon}
-            </a>
-          </td>
+          <td className="tbody__row--column">{networks}</td>
         </tr>
       );
     });
