@@ -11,7 +11,7 @@
     .thead__row--column {
       background-color: $adalabGreen;
       color: white;
-      width: 30%;
+      width: 25%;
     }
     .tbody__row {
       background-color: $paleGrey;
@@ -21,6 +21,13 @@
       &--column {
         padding: 5px;
         text-align: center;
+        // Social media icons
+        .fab {
+          padding: 0 5px;
+          &:hover {
+            color: $adalabGreen;
+          }
+        }
       }
     }
   }

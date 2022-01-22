@@ -39,7 +39,7 @@ function App() {
     setData([
       ...data,
       {
-        id: '487132947328',
+        id: data.length,
         name: studentName,
         counselor: counselor,
         promo: 'O',
@@ -84,11 +84,35 @@ function App() {
       }
     })
     .map((student) => {
+      const rrss = student.social_networks.map((rrss) => ({
+        name: rrss.name,
+        url: rrss.url,
+      }));
+      const socialName = rrss.map((eachSocial) => eachSocial.name);
+      const socialUrl = rrss.map((eachSocial) => eachSocial.url);
+
+      const socialIcon = socialName.map((name, index) => {
+        if (name === 'Twitter') {
+          return <i key={index} className="fab fa-twitter"></i>;
+        } else if (name === 'GitHub') {
+          return <i key={index} className="fab fa-github"></i>;
+        } else if (name === 'LinkedIn') {
+          return <i key={index} className="fab fa-linkedin-in"></i>;
+        } else {
+          return null;
+        }
+      });
+
       return (
         <tr key={student.id} className="tbody__row">
           <td className="tbody__row--column">{student.name}</td>
           <td className="tbody__row--column">{student.counselor}</td>
           <td className="tbody__row--column">{student.speciality}</td>
+          <td className="tbody__row--column">
+            <a href={`${socialUrl}`} target="_blank">
+              {socialIcon}
+            </a>
+          </td>
         </tr>
       );
     });
@@ -127,6 +151,7 @@ function App() {
                 <th className="thead__row--column">Nombre</th>
                 <th className="thead__row--column">Tutora</th>
                 <th className="thead__row--column">Especialidad</th>
+                <th className="thead__row--column">Redes Sociales</th>
               </tr>
             </thead>
             <tbody className="tbody">{renderStudents}</tbody>
