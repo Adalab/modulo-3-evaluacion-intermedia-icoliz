@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-// import callToApi from '../services/api';
-// import ls from '../services/localStorage';
 import '../styles/App.scss';
 
 function App() {
@@ -87,86 +85,102 @@ function App() {
     })
     .map((student) => {
       return (
-        <tr key={student.id}>
-          <td className="table__row--column">{student.name}</td>
-          <td className="table__row--column">{student.counselor}</td>
-          <td className="table__row--column">{student.speciality}</td>
+        <tr key={student.id} className="tbody__row">
+          <td className="tbody__row--column">{student.name}</td>
+          <td className="tbody__row--column">{student.counselor}</td>
+          <td className="tbody__row--column">{student.speciality}</td>
         </tr>
       );
     });
 
   return (
-    <div>
-      <header>
-        <h1>Adalabers</h1>
-        <input
-          type="text"
-          placeholder="Busca por alumna..."
-          value={search}
-          onChange={handleInputSearch}
-        />
-        <select
-          name="filter-students"
-          id="filter-students"
-          value={selected}
-          onChange={handleChangeSelect}
-        >
-          <option value="all">Cualquiera</option>
-          <option value="yanelis">Yanelis</option>
-          <option value="dayana">Dayana</option>
-          <option value="ivan">Iván</option>
-        </select>
+    <>
+      <header className="header">
+        <h1 className="header__title">Adalabers</h1>
+        <form className="header__container">
+          <input
+            className="header__input"
+            type="text"
+            placeholder="Busca por alumna..."
+            value={search}
+            onChange={handleInputSearch}
+          />
+          <select
+            className="header__select"
+            name="filter-students"
+            id="filter-students"
+            value={selected}
+            onChange={handleChangeSelect}
+          >
+            <option value="all">Cualquiera</option>
+            <option value="yanelis">Yanelis</option>
+            <option value="dayana">Dayana</option>
+            <option value="ivan">Iván</option>
+          </select>
+        </form>
       </header>
       <main>
-        <section>
-          <table>
-            <thead>
-              <tr>
-                <th className="table__row--column">Nombre</th>
-                <th className="table__row--column">Tutora</th>
-                <th className="table__row--column">Especialidad</th>
+        <section className="students-section">
+          <table cellSpacing={1} className="table">
+            <thead className="thead">
+              <tr className="thead__row">
+                <th className="thead__row--column">Nombre</th>
+                <th className="thead__row--column">Tutora</th>
+                <th className="thead__row--column">Especialidad</th>
               </tr>
             </thead>
-            <tbody>{renderStudents}</tbody>
+            <tbody className="tbody">{renderStudents}</tbody>
           </table>
         </section>
-        <section>
-          <form onSubmit={(ev) => ev.preventDefault()}>
-            <h2>Añadir una Adalaber</h2>
-            <label className="label" htmlFor="name">
-              Nombre:
+        <section className="register-section">
+          <form className="form" onSubmit={(ev) => ev.preventDefault()}>
+            <h2 className="form__title">Añadir una Adalaber</h2>
+            <div className="form-container">
+              <label className="form__label" htmlFor="name">
+                Nombre:
+              </label>
               <input
+                className="form__input"
                 type="text"
                 id="name"
+                placeholder="Escribe aquí..."
                 value={studentName}
                 onChange={handleChangeName}
               />
-            </label>
-            <label className="label" htmlFor="counselor">
-              Tutora:
+            </div>
+            <div className="form-container">
+              <label className="form__label" htmlFor="counselor">
+                Tutora:
+              </label>
               <input
+                className="form__input"
                 type="text"
                 id="counselor"
+                placeholder="Nombre de tu tutor/a..."
                 value={counselor}
                 onChange={handleChangeCounselor}
               />
-            </label>
-            <label className="label" htmlFor="speciality">
-              Especialidad:
+            </div>
+            <div className="form-container">
+              <label className="form__label" htmlFor="speciality">
+                Especialidad:
+              </label>
               <input
+                className="form__input"
                 type="text"
                 id="speciality"
+                placeholder="Tu especialidad..."
                 value={speciality}
                 onChange={handleChangeSpeciality}
               />
-            </label>
-            <button onClick={handleAddAdalaber}>
+            </div>
+            <button className="form__button" onClick={handleAddAdalaber}>
               Añadir una nueva Adalaber
             </button>
           </form>
         </section>
       </main>
-    </div>
+    </>
   );
 }
 
