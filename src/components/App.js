@@ -104,8 +104,6 @@ function App() {
         );
       });
 
-      console.log(student);
-
       return (
         <tr key={student.id} className="tbody__row">
           <td className="tbody__row--column">{student.name}</td>
