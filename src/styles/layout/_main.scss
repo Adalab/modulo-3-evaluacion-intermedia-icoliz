@@ -1,6 +1,7 @@
 .students-section {
   display: flex;
   justify-content: center;
+  min-height: calc(100vh - 391px);
   .table {
     border: none;
     width: 100%;
