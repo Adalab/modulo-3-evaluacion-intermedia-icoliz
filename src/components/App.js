@@ -6,9 +6,7 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    fetch(
-      'https://beta.adalab.es/pw-recursos/apis/adalabers-v1/promo-patata.json'
-    )
+    fetch('https://paulaepr.github.io/recursos-adalab/apis/adalabers.json')
       .then((response) => response.json())
       .then((dataAPI) => {
         setData(dataAPI.results);
